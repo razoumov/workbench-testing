@@ -65,7 +65,8 @@ contact: 'team@carpentries.org' # FIXME
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
+episodes:
+- 01-intro.md
 - introduction.md
 
 # Information for Learners
@@ -81,5 +82,3 @@ profiles:
 #
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
-
-

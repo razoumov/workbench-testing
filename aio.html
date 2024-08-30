@@ -243,7 +243,19 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using Markdown</a>
+        <a href="01-intro.html">1. Introduction to Chapel</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="introduction.html">2. Using Markdown</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -306,7 +318,214 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">Using Markdown</a></p>
+<section id="aio-01-intro"><p>Content from <a href="01-intro.html">Introduction to Chapel</a></p>
+<hr>
+<p>Last updated on 2024-08-30 |
+
+        <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/01-intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>“What is Chapel and why is it useful?”</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>“Write and execute our first chapel program.”</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong><em>Chapel</em></strong> is a modern programming language,
+developed by <em>Cray Inc.</em>, that supports HPC via high-level
+abstractions for data parallelism and task parallelism. These
+abstractions allow the users to express parallel codes in a natural,
+almost intuitive, manner. In contrast with other high-level parallel
+languages, however, Chapel was designed around a
+<em>multi-resolution</em> philosophy. This means that users can
+incrementally add more detail to their original code prototype, to
+optimise it to a particular computer as closely as required.</p>
+<p>In a nutshell, with Chapel we can write parallel code with the
+simplicity and readability of scripting languages such as Python or
+MATLAB, but achieving performance comparable to compiled languages like
+C or Fortran (+ traditional parallel libraries such as MPI or
+OpenMP).</p>
+<p>In this lesson we will learn the basic elements and syntax of the
+language; then we will study <strong><em>task parallelism</em></strong>,
+the first level of parallelism in Chapel, and finally we will use
+parallel data structures and <strong><em>data parallelism</em></strong>,
+which is the higher level of abstraction, in parallel programming,
+offered by Chapel.</p>
+<section><h2 class="section-heading" id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
+<hr class="half-width">
+<p>Chapel is a compilable language which means that we must
+<strong><em>compile</em></strong> our <strong><em>source
+code</em></strong> to generate a <strong><em>binary</em></strong> or
+<strong><em>executable</em></strong> that we can then run in the
+computer.</p>
+<p>Chapel source code must be written in text files with the extension
+<strong><em>.chpl</em></strong>. Let’s write a simple “hello world”-type
+program to demonstrate how we write Chapel code! Using your favourite
+text editor, create the file <code>hello.chpl</code> with the following
+content:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">writeln</span><span class="er">(</span><span class="st">'If we can see this, everything works!'</span><span class="kw">);</span></span></code></pre>
+</div>
+<p>This program can then be compiled with the following bash
+command:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">chpl</span> <span class="at">--fast</span> hello.chpl <span class="at">-o</span> hello.o</span></code></pre>
+</div>
+<p>The flag <code>--fast</code> indicates the compiler to optimise the
+binary to run as fast as possible in the given architecture. The
+<code>-o</code> option tells Chapel what to call the final output
+program, in this case <code>hello.o</code>.</p>
+<p>To run the code, you execute it as you would any other program:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">./hello.o</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>If we can see this, everything works!</code></pre>
+</div>
+</section><section><h2 class="section-heading" id="running-on-a-cluster">Running on a cluster<a class="anchor" aria-label="anchor" href="#running-on-a-cluster"></a>
+</h2>
+<hr class="half-width">
+<p>Depending on the code, it might utilise several or even all cores on
+the current node. The command above implies that you are allowed to
+utilise all cores. This might not be the case on an HPC cluster, where a
+login node is shared by many people at the same time, and where it might
+not be a good idea to occupy all cores on a login node with
+CPU-intensive tasks.</p>
+<p>On Compute Canada clusters Cedar and Graham we have two versions of
+Chapel, one is a single-locale (single-node) Chapel, and the other is a
+multi-locale (multi-node) Chapel. For now, we will start with
+single-locale Chapel. If you are logged into Cedar or Graham, you’ll
+need to load the single-locale Chapel module:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">module</span> load gcc chapel-multicore</span></code></pre>
+</div>
+<p>Then, for running a test code on a cluster you would submit an
+interactive job to the queue</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">salloc</span> <span class="at">--time</span><span class="op">=</span>0:30:0 <span class="at">--ntasks</span><span class="op">=</span>1 <span class="at">--cpus-per-task</span><span class="op">=</span>3 <span class="at">--mem-per-cpu</span><span class="op">=</span>1000 <span class="at">--account</span><span class="op">=</span>def-guest</span></code></pre>
+</div>
+<p>and then inside that job compile and run the test code</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">chpl</span> <span class="at">--fast</span> hello.chpl <span class="at">-o</span> hello.o</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">./hello.o</span></span></code></pre>
+</div>
+<p>For production jobs, you would compile the code and then submit a
+batch script to the queue:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">chpl</span> <span class="at">--fast</span> hello.chpl <span class="at">-o</span> hello.o</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">sbatch</span> script.sh</span></code></pre>
+</div>
+<p>where the script <code>script.sh</code> would set all Slurm variables
+and call the executable <code>mybinary</code>.</p>
+</section><section><h2 class="section-heading" id="case-study">Case study<a class="anchor" aria-label="anchor" href="#case-study"></a>
+</h2>
+<hr class="half-width">
+<p>Along all the Chapel lessons we will be using the following <em>case
+study</em> as the leading thread of the discussion. Essentially, we will
+be building, step by step, a Chapel code to solve the <strong><em>Heat
+transfer</em></strong> problem described below. Then we will parallelize
+the code to improve its performance.</p>
+<p>Suppose that we have a square metallic plate with some initial heat
+distribution or <strong><em>initial conditions</em></strong>. We want to
+simulate the evolution of the temperature across the plate when its
+border is in contact with a different heat distribution that we call the
+<strong><em>boundary conditions</em></strong>.</p>
+<p>The Laplace equation is the mathematical model for the evolution of
+the temperature in the plate. To solve this equation numerically, we
+need to <strong><em>discretise</em></strong> it, i.e. to consider the
+plate as a grid, or matrix of points, and to evaluate the temperature on
+each point at each iteration, according to the following
+<strong><em>difference equation</em></strong>:</p>
+<pre class="chpl"><code><span><span class="cn">T</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="fl">0.25</span> <span class="op">(</span><span class="va">Tp</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span>,<span class="va">j</span><span class="op">]</span> <span class="op">+</span> <span class="va">Tp</span><span class="op">[</span><span class="va">i</span><span class="op">+</span><span class="fl">1</span>,<span class="va">j</span><span class="op">]</span> <span class="op">+</span> <span class="va">Tp</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">Tp</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">+</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre>
+<p>Here <code>T</code> stands for the temperature at the current
+iteration, while <code>Tp</code> contains the temperature calculated at
+the past iteration (or the initial conditions in case we are at the
+first iteration). The indices <code>i</code> and <code>j</code> indicate
+that we are working on the point of the grid located at the <em>i</em>th
+row and the <em>j</em>th column.</p>
+<p>So, our objective is to:</p>
+<blockquote>
+<h2 id="goals">Goals</h2>
+<ol style="list-style-type: decimal">
+<li>
+<p>Write a code to implement the difference equation above.The code
+should have the following requirements:</p>
+<ul>
+<li>It should work for any given number of rows and columns in the
+grid.</li>
+<li>It should run for a given number of iterations, or until the
+difference between <code>T</code> and <code>Tp</code> is smaller than a
+given tolerance value.</li>
+<li>It should output the temperature at a desired position on the grid
+every given number of iterations.</li>
+</ul>
+</li>
+<li><p>Use task parallelism to improve the performance of the code and
+run it in the cluster</p></li>
+<li><p>Use data parallelism to improve the performance of the code and
+run it in the cluster. {: .checklist}</p></li>
+</ol>
+</blockquote>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>“Chapel is a compiled language - any programs we make must be
+compiled with <code>chpl</code>.”</li>
+<li>“The <code>--fast</code> flag instructs the Chapel compiler to
+optimise our code.”</li>
+<li>“The <code>-o</code> flag tells the compiler what to name our output
+(otherwise it gets named <code>a.out</code>)”</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-introduction"><p>Content from <a href="introduction.html">Using Markdown</a></p>
 <hr>
 <p>Last updated on 2023-07-24 |
 
@@ -386,7 +605,7 @@ reinforce the objectives.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -413,7 +632,7 @@ reinforce the objectives.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>You can add a line with at least three colons and a
 <code>solution</code> tag.</p>
@@ -522,9 +741,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/aio.html",
-  "dateCreated": "2024-08-29",
-  "dateModified": "2024-08-29",
-  "datePublished": "2024-08-29"
+  "dateCreated": "2024-08-30",
+  "dateModified": "2024-08-30",
+  "datePublished": "2024-08-30"
 }
 
   </script><script>
