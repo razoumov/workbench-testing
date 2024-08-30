@@ -7,6 +7,45 @@
     <loc>https://carpentries.github.io/workbench-template-md/01-introduction.html</loc>
   </url>
   <url>
+    <loc>https://carpentries.github.io/workbench-template-md/02-variables.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/03-ranges-arrays.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/04-conditionals.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/05-loops.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/06-procedures.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/07-commandargs.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/08-timing.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/11-parallel-intro.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/12-fire-forget-tasks.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/13-synchronization.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/14-parallel-case-study.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/21-locales.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/22-domains.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries.github.io/workbench-template-md/404.html</loc>
   </url>
   <url>
@@ -29,6 +68,45 @@
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-md/instructor/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/02-variables.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/03-ranges-arrays.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/04-conditionals.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/05-loops.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/06-procedures.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/07-commandargs.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/08-timing.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/11-parallel-intro.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/12-fire-forget-tasks.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/13-synchronization.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/14-parallel-case-study.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/21-locales.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-md/instructor/22-domains.html</loc>
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-md/instructor/404.html</loc>
